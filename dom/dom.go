@@ -1,4 +1,4 @@
-package main
+package Dom
 
 // Interfaces
 // There are 2 main classes of nodes in Dom model: Element and Text nodes.
