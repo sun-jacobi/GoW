@@ -1,4 +1,4 @@
-## A toy Browser implemented by Go
+## A toy Browser In Golang
 
 With the purpose to practice my Golang 
 
