@@ -1,12 +1,15 @@
 package main
 
 import (
+	"grow/dom"
 	"grow/parser"
+	"grow/render"
 	"os"
 )
 
 type Engine struct {
 	parser parser.Parser
+	render render.Render
 }
 
 func Setup() *Engine {
@@ -16,9 +19,21 @@ func Setup() *Engine {
 	}
 	return &Engine{
 		parser: *parser.NewParser(string(src)),
+		render: render.Render{},
 	}
 }
 
-func (*Engine) Run() {
+func (engine *Engine) Run() {
+	dom := engine.parse()
+	engine.rendering(dom)
+}
 
+// Private Methods
+
+func (engine *Engine) rendering(dom dom.Node) {
+	engine.render.Rendering(dom)
+}
+
+func (engine *Engine) parse() dom.Node {
+	return engine.parser.Parse()
 }

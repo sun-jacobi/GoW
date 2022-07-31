@@ -9,9 +9,10 @@ import (
 // ----------------------------------------------------------------------------
 // Parser for the HTML
 type Parser struct {
-	input    string
-	pos      int  // current position in input (point to next char)
-	lastchar byte // last char
+	input string
+	// current position in input (point to the char next to the lastchar
+	pos      int
+	lastchar byte // this char
 }
 
 func NewParser(input string) *Parser {
@@ -24,7 +25,8 @@ func NewParser(input string) *Parser {
 
 // ----------------------------------------------------------------------------
 // Public methods for the html parser
-// Read the current char without consuming it
+
+// Read the next char without consuming it
 func (p Parser) Next() (byte, error) {
 	if !p.eof() {
 		return byte(0), errors.New("Error: No next char when consuming.")
@@ -33,15 +35,15 @@ func (p Parser) Next() (byte, error) {
 	}
 }
 
-// Return the current char, and advance self.pos
+// Return the next char, and advance self.pos
 func (p *Parser) Consume() (byte, error) {
 	if !p.eof() {
 		return byte(0), errors.New("Error: No next char when consuming.")
 	}
-	lastchar := p.input[p.pos]
+	thischar := p.input[p.pos]
 	p.pos += 1
-	p.lastchar = lastchar
-	return lastchar, nil
+	p.lastchar = thischar
+	return thischar, nil
 }
 
 // Consume char until test fail
