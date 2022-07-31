@@ -7,7 +7,7 @@ import (
 )
 
 // ----------------------------------------------------------------------------
-// Parser for the HTML
+// Parser
 type Parser struct {
 	input string
 	// current position in input (point to the char next to the lastchar
