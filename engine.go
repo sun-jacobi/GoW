@@ -35,5 +35,5 @@ func (engine *Engine) rendering(dom dom.Node) {
 }
 
 func (engine *Engine) parse() dom.Node {
-	return engine.parser.Parse()
+	return nil
 }
